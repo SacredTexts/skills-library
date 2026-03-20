@@ -1,3 +1,4 @@
-.DS_Store
 .env
-*.tmp
+logs/
+.claude/statusline.log
+.claude/settings.local.json

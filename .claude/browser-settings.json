@@ -1,0 +1,68 @@
+{
+  "browserTesting": {
+    "enabled": true,
+    "cdpPort": 9222,
+    "cdpEndpoint": "http://localhost:9222",
+    "helperLibrary": "./apps/web/lib/browser-testing.ts",
+    "screenshotDir": "/tmp",
+    "defaultTimeout": 30000,
+    "waitForNetworkIdle": true,
+    "tanstackHydrationDelay": 500,
+    "profile": {
+      "name": "Bodhi",
+      "displayName": "Person 1",
+      "email": "bodhimindflow@gmail.com",
+      "directory": "Default",
+      "launchScript": "./apps/web/scripts/start-chrome-bodhi.sh"
+    }
+  },
+  "testUrls": {
+    "local-js": "http://localhost:3000",
+    "local-php": "http://localhost:8080",
+    "staging": "https://staging.ista.app",
+    "production": "https://ista.app"
+  },
+  "portReference": {
+    "3000": {
+      "stack": "JavaScript/React/TanStack/Next.js",
+      "server": "Vite dev server (pnpm run dev)",
+      "hotReload": true,
+      "auth": "WorkOS AuthKit + iron-session"
+    },
+    "8080": {
+      "stack": "PHP/WordPress/Laravel",
+      "server": "Docker (Nginx + PHP-FPM)",
+      "hotReload": false,
+      "auth": "PHP sessions / WordPress sessions"
+    }
+  },
+  "authSelectors": {
+    "loggedIn": "[data-testid='user-menu'], [data-testid='user-avatar'], .user-menu",
+    "loggedOut": "[data-testid='login-button'], [data-testid='sign-in'], .login-button",
+    "loading": "[data-loading='true'], .loading-spinner"
+  },
+  "adminRoutes": [
+    "/admin/dashboard",
+    "/admin/users",
+    "/admin/roles",
+    "/admin/menu-manager",
+    "/admin/topic-manager",
+    "/admin/file-manager",
+    "/admin/changelog"
+  ],
+  "reminders": [
+    "Use connectToAuthenticatedBrowser() instead of chromium.launch()",
+    "Always check CDP connectivity before browser tests with checkCDPReady()",
+    "Never close the browser, only test pages via cleanup()",
+    "Use 'networkidle' waitUntil for TanStack/React apps",
+    "Take screenshots on failure with debugScreenshot()",
+    "Bodhi Chrome profile has active WorkOS + Google auth for testing"
+  ],
+  "troubleshooting": {
+    "cannotConnect": "Start Chrome with --remote-debugging-port=9222",
+    "noContexts": "Open at least one Chrome window before testing",
+    "portInUse": "lsof -ti:9222 | xargs kill -9",
+    "authFailed": "Re-authenticate in Chrome, check with getAuthCookies()",
+    "sessionExpired": "Log into the app again in Chrome"
+  }
+}

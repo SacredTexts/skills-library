@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Volumes/Coding/Code/**)",
+      "Bash(git restore:*)",
+      "Bash(git add:*)",
+      "Bash(git stash:*)",
+      "Bash(git pull:*)",
+      "Bash(rm:*)",
+      "Bash(node:*)"
+    ],
+    "deny": [],
+    "ask": []
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "./.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "frontend-skills@claude-skills": true,
+    "scraper-dev@scraper-agent-marketplace": true,
+    "claude-dashboard@uppinote20": false
+  },
+  "agentInstructions": {
+    "references": [
+      ".claude/CLAUDE.md",
+      ".claude/agents/coder.md",
+      ".claude/agents/tester.md",
+      ".claude/agents/stuck.md",
+      ".claude/agents/TASK-MANAGEMENT.md",
+      ".claude/agents/SDK-INTEGRATION.md"
+    ],
+    "context": "Skills library project — agent skill distribution and management system"
+  }
+}
